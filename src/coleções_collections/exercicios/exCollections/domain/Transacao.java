@@ -31,6 +31,8 @@ public class Transacao {
         return dataCompra;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -47,9 +49,13 @@ public class Transacao {
         this.idCliente = idCliente;
         this.categoriaProduto = categoriaProduto;
         this.nomeProduto = nomeProduto;
+        if (valor != null && valor.compareTo(BigDecimal.ZERO) < 0){
+            throw new IllegalArgumentException("O valor da transação não pode ser negativo");
+        }
         this.valor = valor;
         this.dataCompra = dataCompra;
     }
+
 
     @Override
     public String toString() {

@@ -35,6 +35,8 @@ public class ExercicioMap {
                 break;
                 case 5: historicoCronologico(lista);
                 break;
+                case 6:
+                    break;
                 default:
                     System.out.println("Informe um valor válido");
             }
@@ -89,11 +91,9 @@ public class ExercicioMap {
         System.out.println("Informe valor do produto: ");
         String valor = s.nextLine();
 
-
         System.out.println("Informe a data da transação: [ex: \"2018-07-22\"] ");
         String data = s.nextLine();
         LocalDate dataCompra = LocalDate.parse(data);
-
 
         Transacao transacao = new Transacao(idCliente, categoriaProduto, nomeProduto,  new BigDecimal(valor), dataCompra);
         return transacao;
