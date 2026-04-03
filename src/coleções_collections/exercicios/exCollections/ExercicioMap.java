@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.mapping;
+
 public class ExercicioMap {
     public static void main(String[] args) {
         List<Transacao> lista = new ArrayList<>();
@@ -25,20 +27,19 @@ public class ExercicioMap {
             i = scanner.nextInt();
 
             switch (i){
-                case 1: lista.add(criaTransacao());
-                break;
-                case 2: gastoPorCliente(lista);
-                break;
-                case 3: produtosCompradosPorCliente(lista);
-                break;
-                case 4: topCategorias(lista);
-                break;
-                case 5: historicoCronologico(lista);
-                break;
-                case 6:
-                    break;
-                default:
-                    System.out.println("Informe um valor válido");
+                case 1-> lista.add(criaTransacao());
+
+                case 2-> gastoPorCliente(lista);
+
+                case 3-> produtosCompradosPorCliente(lista);
+
+                case 4-> topCategorias(lista);
+
+                case 5-> historicoCronologico(lista);
+
+                case 6 ->{break;}
+
+                default-> System.out.println("Informe um valor válido");
             }
         }
 
@@ -49,15 +50,15 @@ public class ExercicioMap {
                 Collectors.reducing(BigDecimal.ZERO, Transacao::getValor, BigDecimal::add)
         ));
 
-        mapGastoCliente.entrySet().forEach(e -> {
-            System.out.println(e.getKey());
-            System.out.println(e.getValue());
+        mapGastoCliente.forEach((key, value) -> {
+            System.out.println(key);
+            System.out.println(value);
         });
     }
 
     public static void produtosCompradosPorCliente(List<Transacao> list){
         Map<String, Set<String>> produtoPorCliente = list.stream().collect(Collectors.groupingBy(Transacao::getIdCliente,
-                Collectors.mapping(Transacao::getNomeProduto, Collectors.toSet())
+                mapping(Transacao::getNomeProduto, Collectors.toSet())
                 ));
 
         produtoPorCliente.forEach((s, strings) -> System.out.println("Cliente:"+ s +" | Produto:"+ strings));
@@ -68,7 +69,8 @@ public class ExercicioMap {
                 Collectors.counting()
                 ));
 
-        topCategorias.forEach((s,n)->System.out.println("Categoria:"+ s +" | Número de vendas:"+ n)) ;
+        topCategorias.entrySet().stream().sorted(Map.Entry.<String,Long>comparingByValue().reversed())
+                .forEach(c->System.out.println("Categoria: "+ c.getKey() +" | Número de vendas:"+ c.getValue())) ;
     }
 
     public static void historicoCronologico(List<Transacao> list){

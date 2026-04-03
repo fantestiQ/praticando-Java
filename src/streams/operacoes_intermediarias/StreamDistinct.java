@@ -1,0 +1,18 @@
+package streams.operacoes_intermediarias;
+
+import streams.domain.Pessoa;
+
+import java.util.List;
+import java.util.stream.Stream;
+
+public class StreamDistinct {
+    public static void main(String[] args) {
+        List<Pessoa> pessoas = new Pessoa().popularPessoa();
+
+        Stream<Pessoa> stream = pessoas.stream().distinct();
+
+        stream.forEach(System.out::println);
+
+
+    }
+}
