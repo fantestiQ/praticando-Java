@@ -2,10 +2,13 @@ package generics.crud.domain;
 
 import generics.crud.GenericCrud;
 import generics.crud.IPersistencia;
+import generics.crud.anotacao.KeyType;
 
 import java.util.Map;
 
 public class Aluno extends GenericCrud<Aluno> implements IPersistencia{
+
+    @KeyType("getCodigo")
     private Long id;
     private String nome;
     private String curso;

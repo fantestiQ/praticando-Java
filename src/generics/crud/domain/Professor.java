@@ -3,10 +3,13 @@ package generics.crud.domain;
 import generics.crud.GenericCrud;
 import generics.crud.IGenericCrud;
 import generics.crud.IPersistencia;
+import generics.crud.anotacao.KeyType;
 
 import java.util.Map;
 
 public class Professor extends GenericCrud<Professor> implements IPersistencia {
+
+    @KeyType("getCodigo")
     private Long id;
     private String nome;
     private String aula;

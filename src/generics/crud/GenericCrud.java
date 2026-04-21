@@ -2,6 +2,7 @@ package generics.crud;
 
 import generics.crud.domain.Aluno;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ public abstract class GenericCrud<T extends IPersistencia> implements IGenericCr
             this.map.put(getClassType(),mapaInterno);
         }
     }
+
 
     public abstract Class<T> getClassType();
 

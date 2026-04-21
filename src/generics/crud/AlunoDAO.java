@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class AlunoDAO extends GenericCrud<Aluno> implements IAlunoDAO{
 
-    public AlunoDAO() {
-        super();
+    public AlunoDAO(Aluno aluno) {
+
     }
 
     @Override
